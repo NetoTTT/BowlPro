@@ -26,6 +26,8 @@ public class TelaLoginCliente extends AppCompatActivity {
     private EditText email_login,senha_login;
     private Button bl,buttonEntrar;
     private View conteiner1_login;
+
+    private ImageView voltarforFirst;
     private TextView cadastro;
     String msg = "Preencha todos os campos!";
     @Override
@@ -34,6 +36,15 @@ public class TelaLoginCliente extends AppCompatActivity {
         setContentView(R.layout.login_cliente);
         allComp();
         bl.setVisibility(View.INVISIBLE);
+
+        voltarforFirst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent e = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(e);
+                finish();
+            }
+        });
 
         cadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,5 +138,6 @@ public class TelaLoginCliente extends AppCompatActivity {
         senha_login = findViewById(R.id.senha_edit_login);
         cadastro = findViewById(R.id.CadastrarCliente);
         buttonEntrar = findViewById(R.id.buttonEntrar);
+        voltarforFirst = findViewById(R.id.iconVoltarforFirst);
     }
 }

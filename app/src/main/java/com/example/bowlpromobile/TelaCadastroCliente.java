@@ -1,11 +1,13 @@
 package com.example.bowlpromobile;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +32,9 @@ public class TelaCadastroCliente extends AppCompatActivity {
 
     private EditText nome_cadastro,email_cadastro,senha_cadastro,idade_cadastro;
     private Button bl,buttonCadastrar;
-    View conteiner1_cadastro;
+    private View conteiner1_cadastro;
+
+    private ImageView voltarforLogin;
     String msg[] = {"Preencha todos os campos!", "Cliente cadastrado com sucesso!"};
     String userID;
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,16 @@ public class TelaCadastroCliente extends AppCompatActivity {
         setContentView(R.layout.cadastro_cliente);
         allCompCadastro();
         bl.setVisibility(View.INVISIBLE);
+
+        voltarforLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent e = new Intent(getApplicationContext(),TelaLoginCliente.class);
+                startActivity(e);
+                finish();
+            }
+        });
+
         buttonCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +68,7 @@ public class TelaCadastroCliente extends AppCompatActivity {
 
                 } else {
                     CadastrarUser(v);
+
                 }
             }
         });
@@ -135,7 +150,9 @@ public class TelaCadastroCliente extends AppCompatActivity {
                     public void onSuccess(Void unused) {
 
                         Log.d("db", "Sucesso ao salvar do dados!"); /* Para saber se salvou no banco coretamente! */
-
+                        Intent i = new Intent(getApplicationContext(),TelaLoginCliente.class);
+                        startActivity(i);
+                        finish();
                     }
                 })
 
@@ -160,6 +177,7 @@ public class TelaCadastroCliente extends AppCompatActivity {
         senha_cadastro = findViewById(R.id.senha_edit_cadastro);
         idade_cadastro = findViewById(R.id.idade_edit_cadastro);
         buttonCadastrar = findViewById(R.id.buttonCadastrar);
+        voltarforLogin = findViewById(R.id.iconVoltarforLogin);
     }
 
 
