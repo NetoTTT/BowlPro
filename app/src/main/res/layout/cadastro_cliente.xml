@@ -7,6 +7,19 @@
     android:background="@drawable/background1"
     tools:context=".TelaCadastroCliente">
 
+    <Button
+        android:id="@+id/buttonCadastrar"
+        android:layout_width="191dp"
+        android:layout_height="47dp"
+        android:backgroundTint="@color/black"
+        android:text="Se Cadastrar"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
+
     <View
         android:id="@+id/conteiner1"
         style="@style/Fundo_conteiner_all"

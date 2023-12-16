@@ -7,6 +7,19 @@
     android:background="@drawable/backwhite"
     tools:context="TelaLoginCliente">
 
+    <Button
+        android:id="@+id/buttonEntrar"
+        android:layout_width="191dp"
+        android:layout_height="47dp"
+        android:backgroundTint="@color/black"
+        android:text="Entar"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="389dp"
@@ -69,7 +82,7 @@
         android:id="@+id/CadastrarCliente"
         android:layout_width="289dp"
         android:layout_height="50dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="96dp"
         android:minHeight="48dp"
         android:text="Não tem uma conta cadastrada? Clique aqui."
         android:textColor="@color/black"
