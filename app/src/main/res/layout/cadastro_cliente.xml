@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backwhite"
-    tools:context="TelaLoginCliente">
+    android:background="@drawable/background1"
+    tools:context=".TelaCadastroCliente">
 
     <View
         android:id="@+id/conteiner1"
         style="@style/Fundo_conteiner_all"
-        android:layout_width="357dp"
-        android:layout_height="173dp"
+        android:layout_width="370dp"
+        android:layout_height="320dp"
         android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/nome_edit"
         style="@style/AllTexts"
-        android:hint="Nome"
+        android:hint="Digite seu nome"
         android:inputType="text"
         android:drawableRight="@drawable/pencil"
         app:layout_constraintStart_toStartOf="@id/conteiner1"
@@ -47,26 +47,39 @@
         style="@style/AllTexts"
         android:layout_marginTop="92dp"
         android:drawableRight="@drawable/email_icon"
-        android:hint="E-mail do cliente"
+        android:hint="Digite um email valido"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@id/conteiner1"
         app:layout_constraintStart_toStartOf="@id/conteiner1"
         app:layout_constraintTop_toTopOf="@id/conteiner1"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/CadastrarCliente"
-        android:layout_width="289dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="52dp"
-        android:minHeight="48dp"
-        android:text="Não tem uma conta cadastrada? Clique aqui."
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/conteiner1" />
+    <EditText
+        android:id="@+id/senha_edit"
+        style="@style/AllTexts"
+        android:layout_marginTop="168dp"
+        android:drawableRight="@drawable/padlock_icon"
+        android:hint="Crie uma senha"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@id/conteiner1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/conteiner1"
+        app:layout_constraintTop_toTopOf="@id/conteiner1"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/idade_edit"
+        style="@style/AllTexts"
+        android:layout_marginTop="240dp"
+        android:drawableRight="@drawable/old_icon"
+        android:hint="Digite sua Idade"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@id/conteiner1"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@id/conteiner1"
+        app:layout_constraintTop_toTopOf="@id/conteiner1"
+        tools:ignore="HardcodedText" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

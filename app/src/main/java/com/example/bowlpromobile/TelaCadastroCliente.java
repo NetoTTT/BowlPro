@@ -1,0 +1,31 @@
+package com.example.bowlpromobile;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class TelaCadastroCliente extends AppCompatActivity {
+
+    private EditText nome,email;
+    private Button bl;
+    View conteiner1;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.cadastro_cliente);
+        allCompCadastro();
+
+
+    }
+
+    private void allCompCadastro(){
+        conteiner1 = findViewById(R.id.conteiner1);
+        bl = findViewById(R.id.bl);
+        nome = findViewById(R.id.nome_edit);
+        email = findViewById(R.id.email_edit);
+    }
+
+
+}
