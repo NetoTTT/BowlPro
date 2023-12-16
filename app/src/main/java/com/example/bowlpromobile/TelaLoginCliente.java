@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TelaLoginCliente extends AppCompatActivity {
-    private EditText nome,email;
+    private EditText email,senha;
     private Button bl;
     private View conteiner1;
     private TextView cadastro;
@@ -40,8 +40,8 @@ public class TelaLoginCliente extends AppCompatActivity {
     private void allComp(){
         conteiner1 = findViewById(R.id.conteiner1);
         bl = findViewById(R.id.bl);
-        nome = findViewById(R.id.nome_edit);
-        email = findViewById(R.id.email_edit);
+        email = findViewById(R.id.email_edit_login);
+        senha = findViewById(R.id.senha_edit_login);
         cadastro = findViewById(R.id.CadastrarCliente);
     }
 }

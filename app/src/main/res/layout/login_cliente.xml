@@ -7,6 +7,17 @@
     android:background="@drawable/backwhite"
     tools:context="TelaLoginCliente">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="389dp"
+        android:layout_height="408dp"
+        android:background="@drawable/loginclientepng"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
+
     <View
         android:id="@+id/conteiner1"
         style="@style/Fundo_conteiner_all"
@@ -32,23 +43,23 @@
         app:layout_constraintVertical_bias="0.33" />
 
     <EditText
-        android:id="@+id/nome_edit"
+        android:id="@+id/email_edit_login"
         style="@style/AllTexts"
-        android:hint="Nome"
+        android:hint="Digite seu email"
         android:inputType="text"
-        android:drawableRight="@drawable/pencil"
+        android:drawableRight="@drawable/email_icon"
         app:layout_constraintStart_toStartOf="@id/conteiner1"
         app:layout_constraintEnd_toEndOf="@id/conteiner1"
         app:layout_constraintTop_toTopOf="@id/conteiner1"
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/email_edit"
+        android:id="@+id/senha_edit_login"
         style="@style/AllTexts"
         android:layout_marginTop="92dp"
-        android:drawableRight="@drawable/email_icon"
-        android:hint="E-mail do cliente"
-        android:inputType="textEmailAddress"
+        android:drawableRight="@drawable/eyes"
+        android:hint="Digite sua senha"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@id/conteiner1"
         app:layout_constraintStart_toStartOf="@id/conteiner1"
         app:layout_constraintTop_toTopOf="@id/conteiner1"
