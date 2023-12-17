@@ -12,25 +12,31 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 public class TelaAgendarHorario extends AppCompatActivity {
 
-    private Button bl3,bAgendar;
-    private EditText nomeA,dataA,horaA,idA;
+    private Button bl3, bAgendar;
+    private EditText nomeA, dataA, horaA, idA;
     private View conteiner3;
     private ImageView voltarMenuCliente;
-    String msg[] = {"Preencha todos os campos!", "Horário agendado com sucesso!"};
+    String msg[] = {"Preencha todos os campos!", "Horário agendado com sucesso!","Você Não pode mais agendar Horários!"};
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +51,7 @@ public class TelaAgendarHorario extends AppCompatActivity {
                 String nome_a = nomeA.getText().toString();
                 String data_a = dataA.getText().toString();
                 String hora_a = horaA.getText().toString();
-                if( nome_a.isEmpty() || data_a.isEmpty() || hora_a.isEmpty()){
+                if (nome_a.isEmpty() || data_a.isEmpty() || hora_a.isEmpty()) {
 
                     Snackbar snackbar = Snackbar.make(v, msg[0], Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
@@ -70,54 +76,87 @@ public class TelaAgendarHorario extends AppCompatActivity {
 
     }
 
-    private void AgendarHorario(View v){
+    private void AgendarHorario(View v) {
         String nome = nomeA.getText().toString();
         String data = dataA.getText().toString();
-        String hora= horaA.getText().toString();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        Map<String, Object> agenda = new HashMap<>();
-        int id = new Random().nextInt(100000);
-        String idRef = String.valueOf(id);
-        agenda.put("Id",id);
-        agenda.put("Nome",nome);
-        agenda.put("Data",data);
-        agenda.put("Hora",hora);
+        String hora = horaA.getText().toString();
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userRef = db.collection("Clientes").document(userID);
         CollectionReference agendasRef = userRef.collection("Agendas");
-        DocumentReference agendasDocRef = agendasRef.document(idRef);
-        agendasDocRef.set(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Snackbar snackbar = Snackbar.make(v, msg[1], Snackbar.LENGTH_SHORT);
+        agendasRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot documentSnapshot = task.getResult();
+
+                    int quantidadeDocumentos = documentSnapshot.size();
+                    if (quantidadeDocumentos < 1) {
+                        Map<String, Object> agenda = new HashMap<>();
+                        int id = new Random().nextInt(100000);
+                        String idRef = String.valueOf(id);
+                        agenda.put("Id", id);
+                        agenda.put("Nome", nome);
+                        agenda.put("Data", data);
+                        agenda.put("Hora", hora);
+
+                        DocumentReference userRef1 = db.collection("Clientes").document(userID);
+                        CollectionReference agendasRef1 = userRef1.collection("Agendas");
+                        DocumentReference agendasDocRef = agendasRef1.document(idRef);
+                        agendasDocRef.set(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Snackbar snackbar = Snackbar.make(v, msg[1], Snackbar.LENGTH_SHORT);
+                                        snackbar.setBackgroundTint(Color.WHITE);
+                                        snackbar.setTextColor(Color.BLACK);
+                                        snackbar.show();
+                                        nomeA.setText("");
+                                        dataA.setText("");
+                                        horaA.setText("");
+                                        String a = userID;
+                                        String conteudo = idRef;
+                                        String nomeArquivo = a;
+
+                                        salvarIDArquivo(conteudo, nomeArquivo);
+                                        Log.d("db", "Sucesso ao Agendar o Horário!");
+                                    }
+
+                                })
+
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                        Log.d("db_erro", "Erro ao Agendar o Horário!" + e.toString());
+
+                                    }
+                                });
+                    }else{
+                        Snackbar snackbar = Snackbar.make(v, msg[2], Snackbar.LENGTH_SHORT);
                         snackbar.setBackgroundTint(Color.WHITE);
                         snackbar.setTextColor(Color.BLACK);
                         snackbar.show();
-                        nomeA.setText("");
-                        dataA.setText("");
-                        horaA.setText("");
-
-                        Log.d("db", "Sucesso ao Agendar o Horário!");
                     }
 
-                })
+                    Log.d("Firestore", "Quantidade de documentos: " + quantidadeDocumentos);
+                } else {
 
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                    Log.e("Firestore", "Erro ao obter documentos", task.getException());
+                }
+            }
+        });
 
-                        Log.d("db_erro", "Erro ao Agendar o Horário!" + e.toString());
-
-                    }
-                });
     }
 
-
-    private void allCompAgendarHorario(){
+    public static void salvarIDArquivo(String conteudo, String nomeArquivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            writer.write(conteudo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void allCompAgendarHorario() {
         voltarMenuCliente = findViewById(R.id.iconVoltarforMenuCliente);
         bl3 = findViewById(R.id.bl3);
         conteiner3 = findViewById(R.id.conteiner3);
@@ -126,4 +165,5 @@ public class TelaAgendarHorario extends AppCompatActivity {
         horaA = findViewById(R.id.horaAgendar);
         bAgendar = findViewById(R.id.buttonAgendar);
     }
+
 }

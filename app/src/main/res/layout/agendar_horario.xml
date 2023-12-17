@@ -130,4 +130,17 @@
         app:layout_constraintVertical_bias="0.943"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Você so pode agendar no maximo 4 horários"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonAgendar"
+        app:layout_constraintVertical_bias="0.865" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
