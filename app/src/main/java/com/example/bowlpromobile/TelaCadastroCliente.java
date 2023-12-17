@@ -135,25 +135,26 @@ public class TelaCadastroCliente extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        Map<String, Object> usuarios = new HashMap<>();
+        Map<String, Object> cliente = new HashMap<>();
 
-        usuarios.put("Nome", nome);
-        usuarios.put("Idade",idade);
+        cliente.put("Nome", nome);
+        cliente.put("Idade",idade);
 
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        DocumentReference documentReference = db.collection("Usuarios").document(userID);
+        DocumentReference documentReference = db.collection("Clientes").document(userID);
 
-        documentReference.set(usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
+        documentReference.set(cliente).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
 
-                        Log.d("db", "Sucesso ao salvar do dados!"); /* Para saber se salvou no banco coretamente! */
+                        Log.d("db", "Sucesso ao salvar do dados!");
                         Intent i = new Intent(getApplicationContext(),TelaLoginCliente.class);
                         startActivity(i);
                         finish();
                     }
+
                 })
 
                 .addOnFailureListener(new OnFailureListener() {
