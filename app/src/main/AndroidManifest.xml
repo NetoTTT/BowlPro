@@ -22,6 +22,16 @@
         <activity android:name=".Menu_Cliente"
             android:exported="false"/>
 
+        <activity android:name=".TelaAgendarHorario"
+            android:exported="false"/>
+
+        <activity android:name=".TelaExibirHorario"
+            android:exported="false"/>
+
+        <activity android:name=".TelaPerfil"
+            android:exported="false"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
