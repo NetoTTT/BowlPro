@@ -44,12 +44,10 @@ public class TelaExibirHorario extends AppCompatActivity {
 
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String nomeArquivo = userID;
-        String b = lerArquivo(nomeArquivo);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userRef1 = db.collection("Clientes").document(userID);
         CollectionReference agendasRef1 = userRef1.collection("Agendas");
-        DocumentReference agendaDocRef = agendasRef1.document(b);
+        DocumentReference agendaDocRef = agendasRef1.document("1");
         agendaDocRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -74,12 +72,10 @@ public class TelaExibirHorario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                String nomeArquivo = userID;
-                String b = lerArquivo(nomeArquivo);
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 DocumentReference userRef1 = db.collection("Clientes").document(userID);
                 CollectionReference agendasRef1 = userRef1.collection("Agendas");
-                DocumentReference agendaDocRef = agendasRef1.document(b);
+                DocumentReference agendaDocRef = agendasRef1.document("1");
                 deletarDocumento(agendaDocRef);
                 agendasRef1.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -107,20 +103,6 @@ public class TelaExibirHorario extends AppCompatActivity {
 
     }
 
-    public static String lerArquivo(String nomeArquivo) {
-        StringBuilder conteudo = new StringBuilder();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo))) {
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                conteudo.append(linha).append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return conteudo.toString();
-    }
 
     private static void deletarDocumento(DocumentReference documentRef) {
 

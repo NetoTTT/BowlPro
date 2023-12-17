@@ -103,7 +103,7 @@ public class TelaAgendarHorario extends AppCompatActivity {
 
                         DocumentReference userRef1 = db.collection("Clientes").document(userID);
                         CollectionReference agendasRef1 = userRef1.collection("Agendas");
-                        DocumentReference agendasDocRef = agendasRef1.document(idRef);
+                        DocumentReference agendasDocRef = agendasRef1.document("1");
                         agendasDocRef.set(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -114,11 +114,6 @@ public class TelaAgendarHorario extends AppCompatActivity {
                                         nomeA.setText("");
                                         dataA.setText("");
                                         horaA.setText("");
-                                        String a = userID;
-                                        String conteudo = idRef;
-                                        String nomeArquivo = a;
-
-                                        salvarIDArquivo(conteudo, nomeArquivo);
                                         Log.d("db", "Sucesso ao Agendar o Horário!");
                                     }
 
@@ -149,13 +144,6 @@ public class TelaAgendarHorario extends AppCompatActivity {
 
     }
 
-    public static void salvarIDArquivo(String conteudo, String nomeArquivo) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-            writer.write(conteudo);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     private void allCompAgendarHorario() {
         voltarMenuCliente = findViewById(R.id.iconVoltarforMenuCliente);
         bl3 = findViewById(R.id.bl3);
