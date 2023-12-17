@@ -31,6 +31,12 @@
         <activity android:name=".TelaPerfil"
         android:exported="false"/>
 
+        <activity android:name=".TelaMenu_ADM"
+            android:exported="false"/>
+
+        <activity android:name=".TelaCod_Only"
+            android:exported="false"/>
+
 
         <activity
             android:name=".MainActivity"

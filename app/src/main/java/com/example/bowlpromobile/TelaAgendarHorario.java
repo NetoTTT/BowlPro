@@ -85,7 +85,67 @@ public class TelaAgendarHorario extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userRef = db.collection("Clientes").document(userID);
         CollectionReference agendasRef = userRef.collection("Agendas");
+
+        DocumentReference userRef1 = db.collection("ADM").document(userID);
+        CollectionReference agendasRef1 = userRef1.collection("Agendas");
         agendasRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot documentSnapshot = task.getResult();
+
+                    int quantidadeDocumentos = documentSnapshot.size();
+                    if (quantidadeDocumentos < 1) {
+                        Map<String, Object> agenda = new HashMap<>();
+                        int id = new Random().nextInt(100000);
+                        String idRef = String.valueOf(id);
+                        agenda.put("Id", id);
+                        agenda.put("Nome", nome);
+                        agenda.put("Data", data);
+                        agenda.put("Hora", hora);
+
+                        DocumentReference userRef1 = db.collection("Clientes").document(userID);
+                        CollectionReference agendasRef1 = userRef1.collection("Agendas");
+                        DocumentReference agendasDocRef = agendasRef1.document("1");
+                        agendasDocRef.set(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Snackbar snackbar = Snackbar.make(v, msg[1], Snackbar.LENGTH_SHORT);
+                                        snackbar.setBackgroundTint(Color.WHITE);
+                                        snackbar.setTextColor(Color.BLACK);
+                                        snackbar.show();
+                                        nomeA.setText("");
+                                        dataA.setText("");
+                                        horaA.setText("");
+                                        Log.d("db", "Sucesso ao Agendar o Horário!");
+                                    }
+
+                                })
+
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                        Log.d("db_erro", "Erro ao Agendar o Horário!" + e.toString());
+
+                                    }
+                                });
+                    }else{
+                        Snackbar snackbar = Snackbar.make(v, msg[2], Snackbar.LENGTH_SHORT);
+                        snackbar.setBackgroundTint(Color.WHITE);
+                        snackbar.setTextColor(Color.BLACK);
+                        snackbar.show();
+                    }
+
+                    Log.d("Firestore", "Quantidade de documentos: " + quantidadeDocumentos);
+                } else {
+
+                    Log.e("Firestore", "Erro ao obter documentos", task.getException());
+                }
+            }
+        });
+
+        agendasRef1.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

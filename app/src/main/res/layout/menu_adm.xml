@@ -23,30 +23,29 @@
         android:id="@+id/constant_agendas"
         android:layout_width="161dp"
         android:layout_height="41dp"
-        android:text="N° de Horários Cad:"
+        android:text="N° de horários cad:"
         android:textColor="@color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBuscarFun"
+        app:layout_constraintVertical_bias="0.868" />
 
     <TextView
         android:id="@+id/constant_agendas_Num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:text=""
         android:textColor="@color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
-        app:layout_constraintStart_toEndOf="@+id/constant_cliente"
+        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintStart_toEndOf="@+id/constant_agendas"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.957" />
 
     <ImageView
         android:id="@+id/iconVoltarforLogin4"
@@ -86,12 +85,12 @@
 
 
     <Button
-        android:id="@+id/buttonExibirHorario"
-        android:layout_width="247dp"
-        android:layout_height="62dp"
+        android:id="@+id/buttonCadastrarFun"
+        android:layout_width="252dp"
+        android:layout_height="66dp"
         android:layout_marginTop="136dp"
         android:backgroundTint="@color/blue_dark"
-        android:text="Exibir Horário"
+        android:text="Cadastrar Funcionário"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/conteiner2"
@@ -101,12 +100,12 @@
         app:layout_constraintTop_toTopOf="@+id/conteiner2" />
 
     <Button
-        android:id="@+id/buttonAgendar"
+        android:id="@+id/buttonBuscarCliente"
         android:layout_width="247dp"
         android:layout_height="62dp"
         android:layout_marginTop="60dp"
         android:backgroundTint="@color/blue_dark"
-        android:text="Agendar Horário"
+        android:text="Buscar Cliente"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/conteiner2"
@@ -116,12 +115,12 @@
         app:layout_constraintTop_toTopOf="@id/conteiner2" />
 
     <Button
-        android:id="@+id/buttonPerfil"
+        android:id="@+id/buttonBuscarFun"
         android:layout_width="247dp"
         android:layout_height="62dp"
         android:layout_marginTop="212dp"
         android:backgroundTint="@color/blue_dark"
-        android:text="Perfil"
+        android:text="Buscar Funcionário"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/conteiner2"
@@ -132,17 +131,17 @@
 
     <TextView
         android:id="@+id/constant_cliente"
-        android:layout_width="161dp"
-        android:layout_height="41dp"
-        android:text="N° de clientes Cad:"
-        android:textSize="18dp"
+        android:layout_width="162dp"
+        android:layout_height="42dp"
+        android:text="N° de clientes cad:"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/constant_agendas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBuscarFun"
+        app:layout_constraintVertical_bias="0.7" />
 
     <TextView
         android:id="@+id/constant_cliente_Num"
@@ -157,6 +156,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/constant_cliente"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.868" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
