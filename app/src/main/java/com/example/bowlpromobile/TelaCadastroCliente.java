@@ -42,7 +42,7 @@ public class TelaCadastroCliente extends AppCompatActivity {
         setContentView(R.layout.cadastro_cliente);
         allCompCadastro();
         bl.setVisibility(View.INVISIBLE);
-
+        conteiner1_cadastro.setVisibility(View.INVISIBLE);
         voltarforLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

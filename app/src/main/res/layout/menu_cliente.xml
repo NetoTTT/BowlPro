@@ -5,17 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/whitesemlogo"
-    tools:context="TelaLoginCliente">
+    tools:context=".Menu_Cliente">
 
+
+    <View
+        android:id="@+id/conteiner2"
+        style="@style/Fundo_conteiner_all"
+        android:layout_width="370dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bl2"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/bl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.33" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="389dp"
         android:layout_height="408dp"
-        android:background="@drawable/menucliente"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/menuclientebluedark"
+        app:layout_constraintBottom_toTopOf="@+id/conteiner2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.024" />
+
+    <Button
+        android:id="@+id/buttonExibirAgenda"
+        android:layout_width="247dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/blue_dark"
+        android:text="Exibir Horário"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/conteiner2"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="@+id/conteiner2"
+        app:layout_constraintStart_toStartOf="@+id/conteiner2"
+        app:layout_constraintTop_toTopOf="@+id/conteiner2" />
+
+    <Button
+        android:id="@+id/buttonAgendar"
+        android:layout_width="247dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="@color/blue_dark"
+        android:text="Agendar Horário"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/conteiner2"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="@+id/conteiner2"
+        app:layout_constraintStart_toStartOf="@+id/conteiner2"
+        app:layout_constraintTop_toTopOf="@id/conteiner2" />
+
+    <Button
+        android:id="@+id/buttonPerfil"
+        android:layout_width="247dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="212dp"
+        android:backgroundTint="@color/blue_dark"
+        android:text="Perfil"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/conteiner2"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="@+id/conteiner2"
+        app:layout_constraintStart_toStartOf="@+id/conteiner2"
+        app:layout_constraintTop_toTopOf="@+id/conteiner2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class TelaLoginCliente extends AppCompatActivity {
     private EditText email_login,senha_login;
     private Button bl,buttonEntrar;
-    private View conteiner1_login;
+    private View conteiner_login;
 
     private ImageView voltarforFirst;
     private TextView cadastro;
@@ -36,6 +36,7 @@ public class TelaLoginCliente extends AppCompatActivity {
         setContentView(R.layout.login_cliente);
         allComp();
         bl.setVisibility(View.INVISIBLE);
+        conteiner_login.setVisibility(View.INVISIBLE);
 
         voltarforFirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +133,7 @@ public class TelaLoginCliente extends AppCompatActivity {
 
 
     private void allComp(){
-        conteiner1_login = findViewById(R.id.conteiner1);
+        conteiner_login = findViewById(R.id.conteiner_Login);
         bl = findViewById(R.id.bl);
         email_login = findViewById(R.id.email_edit_login);
         senha_login = findViewById(R.id.senha_edit_login);
