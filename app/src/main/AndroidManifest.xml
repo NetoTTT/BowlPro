@@ -37,6 +37,9 @@
         <activity android:name=".TelaCod_Only"
             android:exported="false"/>
 
+        <activity android:name=".TelaCadastrarFun"
+            android:exported="false"/>
+
 
         <activity
             android:name=".MainActivity"

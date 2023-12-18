@@ -7,6 +7,45 @@
     android:background="@drawable/whitesemlogo"
     tools:context=".TelaMenu_ADM">
 
+    <View
+        android:id="@+id/conteiner2"
+        style="@style/Fundo_conteiner_all"
+        android:layout_width="370dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bl2"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/constant_fun"
+        android:layout_width="162dp"
+        android:layout_height="42dp"
+        android:text="N° de clientes cad:"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.746" />
+
+    <TextView
+        android:id="@+id/constant_fun_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/constant_fun"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.736" />
+
     <ImageView
         android:id="@+id/MenuADMLogo"
         android:layout_width="389dp"
@@ -32,17 +71,7 @@
         app:layout_constraintVertical_bias="0.024"
         tools:ignore="MissingConstraints" />
 
-    <View
-        android:id="@+id/conteiner2"
-        style="@style/Fundo_conteiner_all"
-        android:layout_width="370dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bl2"
-        tools:ignore="MissingConstraints" />
+
 
     <Button
         android:id="@+id/bl2"
@@ -80,7 +109,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.83" />

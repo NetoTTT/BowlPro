@@ -13,18 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Map;
-
 public class TelaMenu_ADM extends AppCompatActivity {
-    private Button bBuscarCliente,bBuscarFun,bCadastrarFun,bIn;
-    private TextView cAgenda,cCliente;
+    private Button bCadastrarFun,bIn;
+    private TextView cCliente;
 
     private ImageView voltarL;
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +60,6 @@ public class TelaMenu_ADM extends AppCompatActivity {
     }
 
     private void allCompMenuADM(){
-        bBuscarCliente = findViewById(R.id.buttonBuscarCliente);
-        bBuscarFun = findViewById(R.id.buttonBuscarFun);
         bCadastrarFun = findViewById(R.id.buttonCadastrarFun);
         cCliente = findViewById(R.id.constant_cliente_Num);
         voltarL = findViewById(R.id.iconVoltarforLogin4);
