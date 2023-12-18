@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class TelaMenu_ADM extends AppCompatActivity {
-    private Button bCadastrarFun,bIn;
+    private Button bCadastrarFun,bIn,bBuscarTela;
     private TextView cCliente,cFun;
 
     private ImageView voltarL;
@@ -26,6 +26,15 @@ public class TelaMenu_ADM extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_adm);
         allCompMenuADM();
+
+        bBuscarTela.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),BuscarFun.class);
+                startActivity(i);
+                finish();
+            }
+        });
         bCadastrarFun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,5 +97,6 @@ public class TelaMenu_ADM extends AppCompatActivity {
         voltarL = findViewById(R.id.iconVoltarforLogin4);
         bIn= findViewById(R.id.bl2);
         cFun = findViewById(R.id.constant_fun_num);
+        bBuscarTela = findViewById(R.id.buttonBuscarFun);
     }
 }

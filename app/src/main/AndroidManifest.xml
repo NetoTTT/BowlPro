@@ -40,6 +40,10 @@
         <activity android:name=".TelaCadastrarFun"
             android:exported="false"/>
 
+        <activity android:name=".BuscarFun"
+            android:exported="false"/>
+
+
 
         <activity
             android:name=".MainActivity"

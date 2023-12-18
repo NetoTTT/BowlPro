@@ -74,7 +74,7 @@ public class TelaCadastrarFun extends AppCompatActivity {
         String cpf_f = eCPF.getText().toString();
         String cargo_f = eCargo.getText().toString();
         String idade_f = eIdade.getText().toString();
-        String id_f = eIdade.getText().toString();
+        String id_f = eID.getText().toString();
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
