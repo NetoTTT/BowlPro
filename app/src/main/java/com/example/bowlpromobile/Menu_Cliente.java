@@ -56,7 +56,7 @@ public class Menu_Cliente extends AppCompatActivity {
 
     private void allCompMenuCliente(){
         bAgendaHoracio = findViewById(R.id.buttonAgendar);
-        bl2 = findViewById(R.id.bl2);
+        bl2 = findViewById(R.id.bl22);
         voltarLogin2 = findViewById(R.id.iconVoltarforLogin2);
         bExibirHorario = findViewById(R.id.buttonExibirHorario);
         bPerfil = findViewById(R.id.buttonPerfil);

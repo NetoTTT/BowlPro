@@ -28,11 +28,11 @@ public class TelaCadastrarFun extends AppCompatActivity {
 
     private ImageView voltarMenuADM1;
 
-    private EditText eNome,eCPF,eCargo,eIdade;
+    private EditText eNome,eCPF,eCargo,eIdade,eID;
     String msg[] = {"Preencha todos os campos!", "Funcionário cadastrado com sucesso!"};
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_adm);
+        setContentView(R.layout.cadastrar_fun);
         AllCompCadFun();
         bl22.setVisibility(View.INVISIBLE);
         voltarMenuADM1.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +51,9 @@ public class TelaCadastrarFun extends AppCompatActivity {
                 String cpf_f = eCPF.getText().toString();
                 String cargo_f = eCargo.getText().toString();
                 String idade_f = eIdade.getText().toString();
+                String id_f = eIdade.getText().toString();
 
-                if( nome_f.isEmpty() || cpf_f.isEmpty() || cargo_f.isEmpty() || idade_f.isEmpty()){
+                if( nome_f.isEmpty() || cpf_f.isEmpty() || cargo_f.isEmpty() || idade_f.isEmpty() || id_f.isEmpty()){
 
                     Snackbar snackbar = Snackbar.make(v, msg[0], Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
@@ -73,6 +74,8 @@ public class TelaCadastrarFun extends AppCompatActivity {
         String cpf_f = eCPF.getText().toString();
         String cargo_f = eCargo.getText().toString();
         String idade_f = eIdade.getText().toString();
+        String id_f = eIdade.getText().toString();
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -85,7 +88,7 @@ public class TelaCadastrarFun extends AppCompatActivity {
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        DocumentReference documentReference = db.collection("Funcionario").document(userID);
+        DocumentReference documentReference = db.collection("Funcionario").document(id_f);
 
         documentReference.set(fun).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -120,5 +123,6 @@ public class TelaCadastrarFun extends AppCompatActivity {
         eCargo = findViewById(R.id.cargo_edit_fun);
         eCPF = findViewById(R.id.cpf_edit_fun);
         eIdade = findViewById(R.id.idade_edit_fun);
+        eID = findViewById(R.id.id_fun);
     }
 }

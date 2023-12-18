@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class TelaCod_Only extends AppCompatActivity {
 
-    private Button entrarADM;
+    private Button entrarADM,bl4;
     private EditText digitarCOD;
 
     private String msg = "Senha incorreta";
@@ -21,6 +21,8 @@ public class TelaCod_Only extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cod_only);
         allCompLoginADM();
+
+        bl4.setVisibility(View.INVISIBLE);
 
         entrarADM.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,5 +49,6 @@ public class TelaCod_Only extends AppCompatActivity {
     private void allCompLoginADM(){
         entrarADM = findViewById(R.id.buttonEntrarADM);
         digitarCOD = findViewById(R.id.email_edit_login3);
+        bl4 = findViewById(R.id.bl4);
     }
 }

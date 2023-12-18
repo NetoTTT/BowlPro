@@ -19,13 +19,21 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class TelaMenu_ADM extends AppCompatActivity {
     private Button bCadastrarFun,bIn;
-    private TextView cCliente;
+    private TextView cCliente,cFun;
 
     private ImageView voltarL;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_adm);
         allCompMenuADM();
+        bCadastrarFun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TelaCadastrarFun.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         bIn.setVisibility(View.INVISIBLE);
         voltarL.setOnClickListener(new View.OnClickListener() {
@@ -45,14 +53,29 @@ public class TelaMenu_ADM extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     QuerySnapshot querySnapshot = task.getResult();
 
-                    // Obtém o número de documentos na coleção
                     int quantidadeDocumentos = querySnapshot.size();
                     String quantidadeDocumentos1 = String.valueOf(quantidadeDocumentos);
                     cCliente.setText(quantidadeDocumentos1);
-                    // Faça algo com a quantidade de documentos
                     Log.d("Firestore", "Quantidade de documentos: " + quantidadeDocumentos);
                 } else {
-                    // Tratar erro
+                    Log.e("Firestore", "Erro ao obter documentos", task.getException());
+                }
+            }
+        });
+
+        FirebaseFirestore db22 = FirebaseFirestore.getInstance();
+        CollectionReference agendasRef22 = db22.collection("Funcionario");
+        agendasRef22.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot querySnapshot = task.getResult();
+
+                    int quantidadeDocumentos = querySnapshot.size();
+                    String quantidadeDocumentos1 = String.valueOf(quantidadeDocumentos);
+                    cFun.setText(quantidadeDocumentos1);
+                    Log.d("Firestore", "Quantidade de documentos: " + quantidadeDocumentos);
+                } else {
                     Log.e("Firestore", "Erro ao obter documentos", task.getException());
                 }
             }
@@ -63,6 +86,7 @@ public class TelaMenu_ADM extends AppCompatActivity {
         bCadastrarFun = findViewById(R.id.buttonCadastrarFun);
         cCliente = findViewById(R.id.constant_cliente_Num);
         voltarL = findViewById(R.id.iconVoltarforLogin4);
-        bIn= findViewById(R.id.bl22);
+        bIn= findViewById(R.id.bl2);
+        cFun = findViewById(R.id.constant_fun_num);
     }
 }

@@ -61,7 +61,7 @@
         android:layout_width="319dp"
         android:layout_height="75dp"
         android:drawableRight="@drawable/padlock_icon"
-        android:hint="Digite o codigo único"
+        android:hint="Digite o código único"
         android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/black"

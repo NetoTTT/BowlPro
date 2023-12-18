@@ -11,7 +11,7 @@
         android:id="@+id/CadastroLogo"
         android:layout_width="389dp"
         android:layout_height="408dp"
-        android:background="@drawable/cadastrofunlogo"
+        android:background="@drawable/cadastrofunlogo2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +31,7 @@
         app:layout_constraintVertical_bias="0.024"
         tools:ignore="MissingConstraints" />
 
+
     <Button
         android:id="@+id/buttonCadastrarFun1"
         android:layout_width="191dp"
@@ -42,17 +43,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.919" />
-
+        app:layout_constraintVertical_bias="0.961" />
 
     <View
         android:id="@+id/conteiner21"
         style="@style/Fundo_conteiner_all"
-        android:layout_width="370dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="366dp"
+        android:layout_height="379dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bl21"
         tools:ignore="MissingConstraints" />
@@ -66,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.292" />
 
     <EditText
         android:id="@+id/nome_edit_cadastroFun"
@@ -101,7 +100,7 @@
         android:layout_marginTop="168dp"
         android:drawableRight="@drawable/work"
         android:hint="Digite o cargo do funcionário"
-        android:inputType="textPassword"
+        android:inputType="numberDecimal"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/conteiner21"
@@ -121,6 +120,22 @@
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/conteiner21"
         app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@id/conteiner21"
+        app:layout_constraintTop_toTopOf="@id/conteiner21"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/id_fun"
+        style="@style/AllTexts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="308dp"
+        android:drawableRight="@drawable/padlock_icon"
+        android:hint="Digite um id para o funcionário"
+        android:inputType="numberDecimal"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/conteiner21"
         app:layout_constraintStart_toStartOf="@id/conteiner21"
         app:layout_constraintTop_toTopOf="@id/conteiner21"
         tools:ignore="HardcodedText" />

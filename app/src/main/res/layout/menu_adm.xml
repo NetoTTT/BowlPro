@@ -18,8 +18,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bl2"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonBuscarFun"
+        android:layout_width="252dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="140dp"
+        android:backgroundTint="@color/blue_dark"
+        android:text="Buscar Funcionário"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/conteiner2"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintLeft_toLeftOf="@+id/conteiner2"
+        app:layout_constraintStart_toStartOf="@+id/conteiner2"
+        app:layout_constraintTop_toTopOf="@+id/conteiner2" />
+
     <TextView
         android:id="@+id/constant_fun"
+        android:layout_width="187dp"
+        android:layout_height="44dp"
+        android:text="N° de funcionário cad:"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.793" />
+
+    <TextView
+        android:id="@+id/constant_cliente"
         android:layout_width="162dp"
         android:layout_height="42dp"
         android:text="N° de clientes cad:"
@@ -27,10 +57,10 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.746" />
+        app:layout_constraintVertical_bias="0.876" />
 
     <TextView
         android:id="@+id/constant_fun_num"
@@ -44,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/constant_fun"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.77" />
 
     <ImageView
         android:id="@+id/MenuADMLogo"
@@ -101,20 +131,6 @@
         app:layout_constraintTop_toTopOf="@+id/conteiner2" />
 
     <TextView
-        android:id="@+id/constant_cliente"
-        android:layout_width="162dp"
-        android:layout_height="42dp"
-        android:text="N° de clientes cad:"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.83" />
-
-    <TextView
         android:id="@+id/constant_cliente_Num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -126,6 +142,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/constant_cliente"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.854" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
