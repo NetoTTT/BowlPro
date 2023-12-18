@@ -19,34 +19,6 @@
         app:layout_constraintVertical_bias="0.024" />
 
 
-    <TextView
-        android:id="@+id/constant_agendas"
-        android:layout_width="161dp"
-        android:layout_height="41dp"
-        android:text="N° de horários cad:"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBuscarFun"
-        app:layout_constraintVertical_bias="0.868" />
-
-    <TextView
-        android:id="@+id/constant_agendas_Num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintStart_toEndOf="@+id/constant_agendas"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957" />
-
     <ImageView
         android:id="@+id/iconVoltarforLogin4"
         android:layout_width="73dp"
@@ -88,43 +60,13 @@
         android:id="@+id/buttonCadastrarFun"
         android:layout_width="252dp"
         android:layout_height="66dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/blue_dark"
         android:text="Cadastrar Funcionário"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/conteiner2"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintLeft_toLeftOf="@+id/conteiner2"
-        app:layout_constraintStart_toStartOf="@+id/conteiner2"
-        app:layout_constraintTop_toTopOf="@+id/conteiner2" />
-
-    <Button
-        android:id="@+id/buttonBuscarCliente"
-        android:layout_width="247dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="60dp"
-        android:backgroundTint="@color/blue_dark"
-        android:text="Buscar Cliente"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/conteiner2"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintLeft_toLeftOf="@+id/conteiner2"
-        app:layout_constraintStart_toStartOf="@+id/conteiner2"
-        app:layout_constraintTop_toTopOf="@id/conteiner2" />
-
-    <Button
-        android:id="@+id/buttonBuscarFun"
-        android:layout_width="247dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="212dp"
-        android:backgroundTint="@color/blue_dark"
-        android:text="Buscar Funcionário"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/conteiner2"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintLeft_toLeftOf="@+id/conteiner2"
         app:layout_constraintStart_toStartOf="@+id/conteiner2"
         app:layout_constraintTop_toTopOf="@+id/conteiner2" />
@@ -136,18 +78,17 @@
         android:text="N° de clientes cad:"
         android:textColor="@color/black"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/constant_agendas"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBuscarFun"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
 
     <TextView
         android:id="@+id/constant_cliente_Num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:text=""
         android:textColor="@color/black"
         android:textSize="18dp"
@@ -156,6 +97,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/constant_cliente"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.82" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

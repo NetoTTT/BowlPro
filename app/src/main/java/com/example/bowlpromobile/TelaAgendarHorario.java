@@ -87,7 +87,6 @@ public class TelaAgendarHorario extends AppCompatActivity {
         CollectionReference agendasRef = userRef.collection("Agendas");
 
         DocumentReference userRef1 = db.collection("ADM").document(userID);
-        CollectionReference agendasRef1 = userRef1.collection("Agendas");
         agendasRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -107,6 +106,7 @@ public class TelaAgendarHorario extends AppCompatActivity {
                         DocumentReference userRef1 = db.collection("Clientes").document(userID);
                         CollectionReference agendasRef1 = userRef1.collection("Agendas");
                         DocumentReference agendasDocRef = agendasRef1.document("1");
+                        salvaAgendaADM();
                         agendasDocRef.set(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -145,62 +145,6 @@ public class TelaAgendarHorario extends AppCompatActivity {
             }
         });
 
-        agendasRef1.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    QuerySnapshot documentSnapshot = task.getResult();
-
-                    int quantidadeDocumentos = documentSnapshot.size();
-                    if (quantidadeDocumentos < 1) {
-                        Map<String, Object> agenda = new HashMap<>();
-                        int id = new Random().nextInt(100000);
-                        String idRef = String.valueOf(id);
-                        agenda.put("Id", id);
-                        agenda.put("Nome", nome);
-                        agenda.put("Data", data);
-                        agenda.put("Hora", hora);
-
-                        DocumentReference userRef1 = db.collection("Clientes").document(userID);
-                        CollectionReference agendasRef1 = userRef1.collection("Agendas");
-                        DocumentReference agendasDocRef = agendasRef1.document("1");
-                        agendasDocRef.set(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Snackbar snackbar = Snackbar.make(v, msg[1], Snackbar.LENGTH_SHORT);
-                                        snackbar.setBackgroundTint(Color.WHITE);
-                                        snackbar.setTextColor(Color.BLACK);
-                                        snackbar.show();
-                                        nomeA.setText("");
-                                        dataA.setText("");
-                                        horaA.setText("");
-                                        Log.d("db", "Sucesso ao Agendar o Horário!");
-                                    }
-
-                                })
-
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-
-                                        Log.d("db_erro", "Erro ao Agendar o Horário!" + e.toString());
-
-                                    }
-                                });
-                    }else{
-                        Snackbar snackbar = Snackbar.make(v, msg[2], Snackbar.LENGTH_SHORT);
-                        snackbar.setBackgroundTint(Color.WHITE);
-                        snackbar.setTextColor(Color.BLACK);
-                        snackbar.show();
-                    }
-
-                    Log.d("Firestore", "Quantidade de documentos: " + quantidadeDocumentos);
-                } else {
-
-                    Log.e("Firestore", "Erro ao obter documentos", task.getException());
-                }
-            }
-        });
 
     }
 
@@ -212,6 +156,43 @@ public class TelaAgendarHorario extends AppCompatActivity {
         dataA = findViewById(R.id.dataAgendar);
         horaA = findViewById(R.id.horaAgendar);
         bAgendar = findViewById(R.id.buttonAgendar);
+    }
+
+    private  void salvaAgendaADM(){
+        String nome_a = nomeA.getText().toString();
+        String data_a = dataA.getText().toString();
+        String hora_a = horaA.getText().toString();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> agenda1 = new HashMap<>();
+        agenda1.put("Nome", nome_a);
+        agenda1.put("Data",data_a);
+        agenda1.put("Hora",hora_a);
+
+        String userID1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DocumentReference documentReference = db.collection("ADM").document("Agendas");
+        CollectionReference collectionReference = documentReference.collection(userID1);
+        DocumentReference documentReference1 = collectionReference.document("Agenda");
+
+        documentReference1.set(agenda1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        Log.d("db", "Sucesso ao salvar do dados!");
+                    }
+
+                })
+
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Log.d("db_erro", "Erro ao salvar os dados!" + e.toString());
+
+                    }
+                });
     }
 
 }
