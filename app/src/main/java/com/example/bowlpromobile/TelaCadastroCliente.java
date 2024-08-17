@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class TelaCadastroCliente extends AppCompatActivity {
 
-    private EditText nome_cadastro,email_cadastro,senha_cadastro,idade_cadastro;
+    private EditText nome_cadastro,email_cadastro,senha_cadastro,idade_cadastro,tel_cadastro;
     private Button bl,buttonCadastrar;
     private View conteiner1_cadastro;
 
@@ -58,8 +58,9 @@ public class TelaCadastroCliente extends AppCompatActivity {
                 String nome_c  = nome_cadastro.getText().toString();
                 String email_c = email_cadastro.getText().toString();
                 String senha_c = senha_cadastro.getText().toString();
+                String tel_c = tel_cadastro.getText().toString();
 
-                if( nome_c.isEmpty() || email_c.isEmpty() || senha_c.isEmpty()){
+                if( nome_c.isEmpty() || email_c.isEmpty() || senha_c.isEmpty() || tel_c.isEmpty()){
 
                     Snackbar snackbar = Snackbar.make(v, msg[0], Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
@@ -129,21 +130,24 @@ public class TelaCadastroCliente extends AppCompatActivity {
     }
 
     private  void SalvarDadosUser(){
-
+        String email = email_cadastro.getText().toString();
         String nome = nome_cadastro.getText().toString();
         String idade= idade_cadastro.getText().toString();
+        String tel = tel_cadastro.getText().toString();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> cliente = new HashMap<>();
 
-        cliente.put("Nome", nome);
-        cliente.put("Idade",idade);
+        cliente.put("nome", nome);
+        cliente.put("idade",idade);
+        cliente.put("tel",tel);
+        cliente.put("email", email);
 
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        DocumentReference documentReference = db.collection("Clientes").document(userID);
+        DocumentReference documentReference = db.collection("clientes").document(userID);
 
         documentReference.set(cliente).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -179,6 +183,7 @@ public class TelaCadastroCliente extends AppCompatActivity {
         idade_cadastro = findViewById(R.id.idade_edit_cadastro);
         buttonCadastrar = findViewById(R.id.buttonCadastrar);
         voltarforLogin = findViewById(R.id.iconVoltarforLogin);
+        tel_cadastro = findViewById(R.id.tel_edit_cadastro);
     }
 
 

@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background1"
-    tools:context=".TelaCadastrarFun">
+    tools:context=".TelaCadastrarFun"
+    tools:layout_editor_absoluteX="-1dp"
+    tools:layout_editor_absoluteY="-20dp">
 
     <ImageView
         android:id="@+id/CadastroLogo"
-        android:layout_width="389dp"
-        android:layout_height="408dp"
+        android:layout_width="381dp"
+        android:layout_height="331dp"
         android:background="@drawable/cadastrofunlogo2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/iconVoltarforLogin12"
@@ -52,6 +54,7 @@
         android:layout_height="379dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bl21"
         tools:ignore="MissingConstraints" />
@@ -70,26 +73,29 @@
     <EditText
         android:id="@+id/nome_edit_cadastroFun"
         style="@style/AllTexts"
+        android:layout_marginTop="16dp"
+        android:drawableRight="@drawable/pencil"
         android:hint="Digite o nome do funcionário"
         android:inputType="text"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:drawableRight="@drawable/pencil"
-        app:layout_constraintStart_toStartOf="@id/conteiner21"
         app:layout_constraintEnd_toEndOf="@id/conteiner21"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@id/conteiner21"
         app:layout_constraintTop_toTopOf="@id/conteiner21"
         tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/cpf_edit_fun"
         style="@style/AllTexts"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="80dp"
         android:drawableRight="@drawable/email_icon"
         android:hint="Digite o CPF do funcionário"
         android:inputType="numberDecimal"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/conteiner21"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="@id/conteiner21"
         app:layout_constraintTop_toTopOf="@id/conteiner21"
         tools:ignore="HardcodedText" />
@@ -97,14 +103,14 @@
     <EditText
         android:id="@+id/cargo_edit_fun"
         style="@style/AllTexts"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="156dp"
         android:drawableRight="@drawable/work"
         android:hint="Digite o cargo do funcionário"
         android:inputType="text"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/conteiner21"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="@id/conteiner21"
         app:layout_constraintTop_toTopOf="@id/conteiner21"
         tools:ignore="HardcodedText" />
@@ -112,14 +118,14 @@
     <EditText
         android:id="@+id/idade_edit_fun"
         style="@style/AllTexts"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="228dp"
         android:drawableRight="@drawable/old_icon"
         android:hint="Digite a idade do funcionário"
         android:inputType="numberDecimal"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/conteiner21"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="@id/conteiner21"
         app:layout_constraintTop_toTopOf="@id/conteiner21"
         tools:ignore="HardcodedText" />
@@ -129,13 +135,14 @@
         style="@style/AllTexts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="296dp"
         android:drawableRight="@drawable/padlock_icon"
         android:hint="Digite um id para o funcionário"
         android:inputType="numberDecimal"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/conteiner21"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@id/conteiner21"
         app:layout_constraintTop_toTopOf="@id/conteiner21"
         tools:ignore="HardcodedText" />

@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/CadastroLogo"
-        android:layout_width="389dp"
-        android:layout_height="408dp"
+        android:layout_width="251dp"
+        android:layout_height="230dp"
         android:background="@drawable/cadastrocliente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,11 +48,11 @@
     <View
         android:id="@+id/conteiner1"
         style="@style/Fundo_conteiner_all"
-        android:layout_width="370dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="362dp"
+        android:layout_height="395dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bl1"
         tools:ignore="MissingConstraints" />
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <EditText
         android:id="@+id/nome_edit_cadastro"
@@ -121,6 +121,23 @@
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/conteiner1"
         app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@id/conteiner1"
+        app:layout_constraintTop_toTopOf="@id/conteiner1"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/tel_edit_cadastro"
+        style="@style/AllTexts"
+        android:layout_width="334dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="312dp"
+        android:drawableRight="@drawable/telefone"
+        android:hint="Digite seu telefone"
+        android:inputType="numberDecimal"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/conteiner1"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="@id/conteiner1"
         app:layout_constraintTop_toTopOf="@id/conteiner1"
         tools:ignore="HardcodedText" />

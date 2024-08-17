@@ -81,14 +81,14 @@ public class TelaCadastrarFun extends AppCompatActivity {
 
         Map<String, Object> fun = new HashMap<>();
 
-        fun.put("Nome", nome_f);
-        fun.put("CPF",cpf_f);
-        fun.put("Cargo",cargo_f);
-        fun.put("Idade",idade_f);
+        fun.put("nome", nome_f);
+        fun.put("cpf",cpf_f);
+        fun.put("cargo",cargo_f);
+        fun.put("idade",idade_f);
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        DocumentReference documentReference = db.collection("Funcionario").document(id_f);
+        DocumentReference documentReference = db.collection("funcionarios").document(id_f);
 
         documentReference.set(fun).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

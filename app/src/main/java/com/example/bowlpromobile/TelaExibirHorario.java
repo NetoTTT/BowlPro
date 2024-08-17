@@ -3,117 +3,140 @@ package com.example.bowlpromobile;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bowlpromobile.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class TelaExibirHorario extends AppCompatActivity {
 
     private ImageView voltarMenu2;
-    private TextView old_Exibir,hora_Exibir;
+    private RecyclerView recyclerView;
+    private HorarioAdapter adapter;
+    private List<Horario> horarios = new ArrayList<>();
     private Button bCancelarH;
-    String msg[] = {"Horário cancelado com sucesso!", "Erro ao cancelar o Horário!"};
+    String msg[] = {"Horário(s) cancelado(s) com sucesso!", "Erro ao cancelar o(s) Horário(s)!"};
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String emailCliente;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exibir_horario);
         allCompExibirHorario();
 
+        // Obter o email do usuário autenticado
+        emailCliente = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new HorarioAdapter(horarios);
+        recyclerView.setAdapter(adapter);
 
-        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference userRef1 = db.collection("Clientes").document(userID);
-        CollectionReference agendasRef1 = userRef1.collection("Agendas");
-        DocumentReference agendaDocRef = agendasRef1.document("1");
-        agendaDocRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+        // Buscar horários do usuário
+        fetchHorarios();
 
-                if(documentSnapshot != null){
-                    old_Exibir.setText(documentSnapshot.getString("Data"));
-                    hora_Exibir.setText(documentSnapshot.getString("Hora"));
+        voltarMenu2.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), Menu_Cliente.class);
+            startActivity(i);
+            finish();
+        });
+
+        bCancelarH.setOnClickListener(v -> {
+            Set<Integer> selectedPositions = adapter.getSelectedItems(); // Obtém os itens selecionados
+
+            if (selectedPositions.isEmpty()) {
+                Snackbar snackbar = Snackbar.make(v, "Nenhum horário selecionado.", Snackbar.LENGTH_SHORT);
+                snackbar.setBackgroundTint(Color.WHITE);
+                snackbar.setTextColor(Color.BLACK);
+                snackbar.show();
+                return; // Sai da função se nenhum item foi selecionado
+            }
+
+            // Converta o Set em uma lista e ordene em ordem decrescente
+            List<Integer> sortedPositions = new ArrayList<>(selectedPositions);
+            sortedPositions.sort((a, b) -> b - a);
+
+            for (int position : sortedPositions) {
+                Horario horario = horarios.get(position); // Pega o horário com base na posição
+                String id = horario.getId(); // Certifique-se de que o ID está presente
+
+                if (id != null && !id.isEmpty()) {
+                    DocumentReference docRef = db.collection("horarios").document(id);
+                    docRef.delete().addOnSuccessListener(aVoid -> {
+                        Log.d("Firestore", "Horário excluído com sucesso.");
+                    }).addOnFailureListener(e -> {
+                        Log.w("Firestore", "Erro ao excluir horário.", e);
+                    });
+                } else {
+                    Log.w("Firestore", "ID do documento está nulo ou vazio.");
                 }
+
+                horarios.remove(position); // Remove o item da lista de trás para frente
             }
+
+            adapter.notifyDataSetChanged(); // Atualiza a lista
         });
 
-        voltarMenu2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), Menu_Cliente.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
-        bCancelarH.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                DocumentReference userRef1 = db.collection("Clientes").document(userID);
-                CollectionReference agendasRef1 = userRef1.collection("Agendas");
-                DocumentReference agendaDocRef = agendasRef1.document("1");
-                deletarDocumento(agendaDocRef);
-                agendasRef1.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        QuerySnapshot documentSnapshot = task.getResult();
 
-                        int quantidadeDocumentos = documentSnapshot.size();
-                        if(quantidadeDocumentos != 0){
-                            Snackbar snackbar = Snackbar.make(v, msg[1], Snackbar.LENGTH_SHORT);
-                            snackbar.setBackgroundTint(Color.WHITE);
-                            snackbar.setTextColor(Color.BLACK);
-                            snackbar.show();
-                            old_Exibir.setText("");
-                            hora_Exibir.setText("");
-                        }else{
-                            Snackbar snackbar = Snackbar.make(v, msg[0], Snackbar.LENGTH_SHORT);
-                            snackbar.setBackgroundTint(Color.WHITE);
-                            snackbar.setTextColor(Color.BLACK);
-                            snackbar.show();
-                        }
+
+    }
+
+    private void fetchHorarios() {
+        CollectionReference horariosRef = db.collection("horarios");
+        horariosRef.whereEqualTo("email_cliente", emailCliente).addSnapshotListener((querySnapshot, error) -> {
+            if (querySnapshot != null) {
+                horarios.clear(); // Limpa a lista antes de adicionar novos itens
+                for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                    Horario horario = document.toObject(Horario.class);
+                    if (horario != null) {
+                        horario.setId(document.getId()); // Define o ID do documento no objeto Horario
+                        horarios.add(horario);
                     }
-                });
+                }
+                adapter.notifyDataSetChanged();
+            } else if (error != null) {
+                Log.e("Firestore", "Erro ao buscar horários", error);
             }
         });
-
     }
 
 
-    private static void deletarDocumento(DocumentReference documentRef) {
-
-        documentRef.delete();
+    private void deleteHorarioFromDatabase(Horario horario) {
+        db.collection("horarios").document(horario.getId()).delete().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("Firestore", "Horário excluído com sucesso.");
+            } else {
+                Log.w("Firestore", "Erro ao excluir horário.", task.getException());
+            }
+        });
     }
 
-
-    private void allCompExibirHorario(){
+    private void allCompExibirHorario() {
         voltarMenu2 = findViewById(R.id.iconVoltarforMenuCliente2);
-        old_Exibir = findViewById(R.id.caixa_text_old_HM);
-        hora_Exibir = findViewById(R.id.caixa_text_hora_HM);
+        recyclerView = findViewById(R.id.recyclerViewHorarios);
         bCancelarH = findViewById(R.id.cancelarHorario);
     }
 }

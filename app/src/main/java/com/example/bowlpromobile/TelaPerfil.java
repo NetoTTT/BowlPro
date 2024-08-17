@@ -21,7 +21,7 @@ import org.w3c.dom.Text;
 public class TelaPerfil extends AppCompatActivity {
 
     private ImageView voltaMenuCliente3;
-    private TextView nome_P_Cliente,email_P_CLiente,old_P_Cliente;
+    private TextView nome_P_Cliente,email_P_CLiente,old_P_Cliente,tel_P_Cliente;
 
     private String IDUser;
 
@@ -48,16 +48,22 @@ public class TelaPerfil extends AppCompatActivity {
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         IDUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        DocumentReference documentReference = db.collection("Clientes").document(IDUser);
+        DocumentReference documentReference = db.collection("clientes").document(IDUser);
 
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
 
                 if(documentSnapshot != null){
-                    nome_P_Cliente.setText(documentSnapshot.getString("Nome"));
+                    nome_P_Cliente.setText(documentSnapshot.getString("nome"));
                     email_P_CLiente.setText(email);
-                    old_P_Cliente.setText(documentSnapshot.getString("Idade"));
+                    old_P_Cliente.setText(documentSnapshot.getString("idade"));
+                    tel_P_Cliente.setText(documentSnapshot.getString("tel"));
+                }else{
+                    nome_P_Cliente.setText("...");
+                    email_P_CLiente.setText("...");
+                    old_P_Cliente.setText("...");
+                    tel_P_Cliente.setText("...");
                 }
             }
         });
@@ -70,5 +76,6 @@ public class TelaPerfil extends AppCompatActivity {
         nome_P_Cliente = findViewById(R.id.Caixa_text_nome_perfil);
         email_P_CLiente = findViewById(R.id.caixa_text_email_perfil);
         old_P_Cliente = findViewById(R.id.caixa_text_old_perfil);
+        tel_P_Cliente = findViewById(R.id.caixa_text_tel_perfil);
     }
 }

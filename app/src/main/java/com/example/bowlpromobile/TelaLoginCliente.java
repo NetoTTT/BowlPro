@@ -38,15 +38,6 @@ public class TelaLoginCliente extends AppCompatActivity {
         bl.setVisibility(View.INVISIBLE);
         conteiner_login.setVisibility(View.INVISIBLE);
 
-        voltarforFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent e = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(e);
-                finish();
-            }
-        });
-
         cadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +130,5 @@ public class TelaLoginCliente extends AppCompatActivity {
         senha_login = findViewById(R.id.senha_edit_login);
         cadastro = findViewById(R.id.CadastrarCliente);
         buttonEntrar = findViewById(R.id.buttonEntrar);
-        voltarforFirst = findViewById(R.id.iconVoltarforFirst);
     }
 }

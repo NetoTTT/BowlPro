@@ -10,6 +10,32 @@
     tools:layout_editor_absoluteY="0dp">
 
     <ImageView
+        android:id="@+id/Tel_img"
+        android:layout_width="59dp"
+        android:layout_height="62dp"
+        android:src="@drawable/telefone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.829" />
+
+    <TextView
+        android:id="@+id/caixa_text_tel_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toEndOf="@+id/Email_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.819" />
+
+    <ImageView
         android:id="@+id/PerfilLogo"
         android:layout_width="389dp"
         android:layout_height="408dp"

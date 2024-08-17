@@ -83,7 +83,7 @@
         android:layout_marginBottom="12dp"
         android:drawableRight="@drawable/padlock_icon"
         android:hint="Digite um id para o funcionário"
-        android:inputType="numberDecimal"
+        android:inputType="text"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/buttonBuscarFun3"

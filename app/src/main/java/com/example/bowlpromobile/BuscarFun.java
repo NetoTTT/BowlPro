@@ -7,29 +7,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import org.checkerframework.checker.units.qual.A;
 
 public class BuscarFun extends AppCompatActivity {
 
     private Button bBuscarFun;
-
-    private TextView tNome,tCPF,tIdade,tCargo;
-
+    private TextView tNome, tCPF, tIdade, tCargo;
     private ImageView voltarMenuADM222;
-
     private EditText tId;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buscar_fun);
@@ -38,34 +37,50 @@ public class BuscarFun extends AppCompatActivity {
         voltarMenuADM222.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),TelaMenu_ADM.class);
+                Intent i = new Intent(getApplicationContext(), TelaMenu_ADM.class);
                 startActivity(i);
                 finish();
             }
         });
+
         bBuscarFun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String buscar = tId.getText().toString();
+                if (buscar.isEmpty()) {
+                    Toast.makeText(BuscarFun.this, "Digite um ID válido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                DocumentReference d = db.collection("Funcionario").document(buscar);
-                d.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                DocumentReference d = db.collection("funcionarios").document(buscar);
+                d.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(value != null){
-                            tNome.setText(value.getString("Nome"));
-                            tCPF.setText(value.getString("CPF"));
-                            tIdade.setText(value.getString("Idade"));
-                            tCargo.setText((value.getString("Cargo")));
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                tNome.setText(document.getString("nome"));
+                                tCPF.setText(document.getString("cpf"));
+                                tIdade.setText(document.getString("idade"));
+                                tCargo.setText(document.getString("cargo"));
+                            } else {
+                                // Documento não encontrado
+                                tNome.setText("Não encontrado");
+                                tCPF.setText("Não encontrado");
+                                tIdade.setText("Não encontrado");
+                                tCargo.setText("Não encontrado");
+                            }
+                        } else {
+                            // Erro ao buscar o documento
+                            Toast.makeText(BuscarFun.this, "Erro ao buscar documento: " + task.getException(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
             }
         });
-
     }
 
-    private void AllCompBuscarFun(){
+    private void AllCompBuscarFun() {
         bBuscarFun = findViewById(R.id.buttonBuscarFun3);
         tNome = findViewById(R.id.Caixa_text_nome_perfil2);
         tCPF = findViewById(R.id.caixa_text_email_perfil22);
