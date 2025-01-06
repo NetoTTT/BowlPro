@@ -36,9 +36,9 @@ public class TelaLoginCliente extends AppCompatActivity {
         setContentView(R.layout.login_cliente);
         allComp();
         bl.setVisibility(View.INVISIBLE);
-        conteiner_login.setVisibility(View.INVISIBLE);
+        conteiner_login.setVisibility(.INVISIBLE);
 
-        cadastro.setOnClickListener(new View.OnClickListener() {
+        cadastro.setOnClickListener(new View.ViewOnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),TelaCadastroCliente.class);
